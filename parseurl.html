@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Parser</title>
+    <script type="text/javascript">
+        function parseURL() {
+            var url = document.getElementById('urlInput').value;
+            try {
+                var parsedUrl = new URL(url);
+
+                var scheme = parsedUrl.protocol;
+                var host = parsedUrl.hostname;
+                var port = parsedUrl.port;
+                var path = parsedUrl.pathname;
+                var query = parsedUrl.search;
+                var fragment = parsedUrl.hash;
+                var subdomain = host.split('.').slice(0, -2).join('.');
+                
+                document.getElementById('scheme').innerText = 'Scheme: ' + scheme;
+                document.getElementById('subdomain').innerText = 'Subdomain: ' + subdomain;
+                document.getElementById('host').innerText = 'Host: ' + host;
+                document.getElementById('port').innerText = 'Port: ' + port;
+                document.getElementById('path').innerText = 'Path: ' + path;
+                document.getElementById('query').innerText = 'Query: ' + query;
+                document.getElementById('fragment').innerText = 'Fragment: ' + fragment;
+            } catch (e) {
+                alert('Invalid URL');
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>URL Parser</h2>
+    <input type="text" id="urlInput" placeholder="Enter URL here" style="width: 300px;">
+    <button onclick="parseURL()">Parse URL</button>
+    <div id="parsedResults">
+        <p id="scheme"></p>
+        <p id="subdomain"></p>
+        <p id="host"></p>
+        <p id="port"></p>
+        <p id="path"></p>
+        <p id="query"></p>
+        <p id="fragment"></p>
+    </div>
+</body>
+</html>
